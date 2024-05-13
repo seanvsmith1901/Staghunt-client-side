@@ -1,0 +1,107 @@
+[gd_scene load_steps=8 format=3 uid="uid://by368k2xf5yn5"]
+
+[ext_resource type="Script" path="res://Scenes/MainMenu.gd" id="1_4wjfq"]
+[ext_resource type="Texture2D" uid="uid://7b6maqnlslsc" path="res://Downloads/download.jpg" id="2_kq8ad"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hmlhi"]
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_jb584"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_l8735"]
+font_size = 40
+
+[sub_resource type="Theme" id="Theme_yjix1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xa12p"]
+font_size = 60
+
+[node name="MenuNode" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4wjfq")
+
+[node name="MenuButton" type="MenuButton" parent="."]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 216.0
+offset_right = 432.0
+offset_bottom = 368.0
+
+[node name="TextureRect" type="TextureRect" parent="MenuButton"]
+layout_mode = 0
+offset_left = -208.0
+offset_top = -216.0
+offset_right = 944.0
+offset_bottom = 424.0
+texture = ExtResource("2_kq8ad")
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="MenuButton/TextureRect"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 40.0
+offset_right = 768.0
+offset_bottom = 180.0
+text = "Pursuit"
+label_settings = SubResource("LabelSettings_hmlhi")
+
+[node name="Label2" type="Label" parent="MenuButton/TextureRect"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 456.0
+offset_right = 993.0
+offset_bottom = 514.0
+text = "something consent something something "
+label_settings = SubResource("LabelSettings_jb584")
+
+[node name="Label3" type="Label" parent="MenuButton/TextureRect"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 408.0
+offset_right = 1019.0
+offset_bottom = 466.0
+text = "Something something 18 or older something "
+label_settings = SubResource("LabelSettings_l8735")
+
+[node name="PortInput" type="LineEdit" parent="MenuButton"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 248.0
+offset_bottom = 96.0
+theme = SubResource("Theme_yjix1")
+text = "Port:"
+
+[node name="IPInput" type="LineEdit" parent="MenuButton"]
+layout_mode = 0
+offset_top = -32.0
+offset_right = 248.0
+offset_bottom = 23.0
+text = "IP: "
+
+[node name="userName" type="LineEdit" parent="MenuButton"]
+layout_mode = 0
+offset_top = 112.0
+offset_right = 248.0
+offset_bottom = 176.0
+text = "Name: "
+
+[node name="Button" type="Button" parent="MenuButton"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = -24.0
+offset_right = 776.0
+offset_bottom = 152.0
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="MenuButton/Button"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 32.0
+offset_right = 270.0
+offset_bottom = 118.0
+text = "Join"
+label_settings = SubResource("LabelSettings_xa12p")
+
+[connection signal="pressed" from="MenuButton/Button" to="." method="_on_button_pressed"]

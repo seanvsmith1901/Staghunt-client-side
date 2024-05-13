@@ -1,0 +1,108 @@
+[gd_scene load_steps=18 format=3 uid="uid://c41vhko7wvpfi"]
+
+[ext_resource type="Texture2D" uid="uid://buyabfxihc5c2" path="res://Enemies/Bat.png" id="1_6t74m"]
+[ext_resource type="Texture2D" uid="uid://dod440i608rj6" path="res://Shadows/SmallShadow.png" id="1_ibxil"]
+[ext_resource type="Script" path="res://Enemies/bat.gd" id="1_pyy8r"]
+[ext_resource type="Shader" path="res://playerShader.gdshader" id="3_rokmf"]
+[ext_resource type="PackedScene" uid="uid://dmh16223m5b2f" path="res://Overlap/hurtbox.tscn" id="4_ape0p"]
+[ext_resource type="PackedScene" uid="uid://cmc2nji7md62h" path="res://Overlap/soft_collision.tscn" id="8_f4psg"]
+[ext_resource type="Script" path="res://Enemies/BatSynchronizer.gd" id="11_ik8pp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_35xf0"]
+resource_local_to_scene = true
+shader = ExtResource("3_rokmf")
+shader_parameter/active = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7voep"]
+atlas = ExtResource("1_6t74m")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk5cg"]
+atlas = ExtResource("1_6t74m")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qevxk"]
+atlas = ExtResource("1_6t74m")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm3gl"]
+atlas = ExtResource("1_6t74m")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10kdn"]
+atlas = ExtResource("1_6t74m")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nymod"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7voep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk5cg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qevxk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rm3gl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10kdn")
+}],
+"loop": true,
+"name": &"animationFly",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nlooa"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pwh8m"]
+radius = 12.0416
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_odx7x"]
+radius = 5.0
+
+[node name="Bat" type="CharacterBody2D"]
+script = ExtResource("1_pyy8r")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture = ExtResource("1_ibxil")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_35xf0")
+sprite_frames = SubResource("SpriteFrames_nymod")
+animation = &"animationFly"
+autoplay = "animationFly"
+frame_progress = 0.611337
+offset = Vector2(0, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_nlooa")
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_ape0p")]
+use_parent_material = true
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, -15)
+shape = SubResource("CircleShape2D_pwh8m")
+
+[node name="SoftCollision" parent="." instance=ExtResource("8_f4psg")]
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+shape = SubResource("CircleShape2D_odx7x")
+
+[node name="BatSynchronizer" type="MultiplayerSynchronizer" parent="."]
+script = ExtResource("11_ik8pp")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
+[connection signal="invincibility_started" from="Hurtbox" to="." method="_on_hurtbox_invincibility_started"]
+
+[editable path="Hurtbox"]
+[editable path="SoftCollision"]

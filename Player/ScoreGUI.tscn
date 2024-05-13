@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://lg8thhlwq3w6"]
+
+[ext_resource type="Script" path="res://Player/RichTextLabel.gd" id="1_7n8wm"]
+
+[node name="ColorRect" type="ColorRect"]
+offset_left = 256.0
+offset_top = 256.0
+offset_right = 272.0
+offset_bottom = 276.0
+color = Color(0.0470588, 0, 0.458824, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 32.0
+offset_bottom = 22.0
+text = "1"
+script = ExtResource("1_7n8wm")

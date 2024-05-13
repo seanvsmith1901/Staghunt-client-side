@@ -1,0 +1,163 @@
+[gd_scene load_steps=13 format=3 uid="uid://d0odansma2sbm"]
+
+[ext_resource type="PackedScene" uid="uid://d3jqbilf8cr2d" path="res://World/dirt path.tscn" id="1_74fk4"]
+[ext_resource type="Texture2D" uid="uid://wp7e0n7jix8t" path="res://World/GrassBackground.png" id="1_dv7ls"]
+[ext_resource type="PackedScene" uid="uid://5pjna7meqtk" path="res://camera_2d.tscn" id="1_tkesx"]
+[ext_resource type="PackedScene" uid="uid://80x3qxe1bfkc" path="res://World/cliff_w__collisions.tscn" id="2_46fb0"]
+[ext_resource type="PackedScene" uid="uid://c7ac1c8lvceds" path="res://World/bush.tscn" id="2_oc2a2"]
+[ext_resource type="PackedScene" uid="uid://ngb55l26day0" path="res://Player/player.tscn" id="2_wrcgn"]
+[ext_resource type="PackedScene" uid="uid://dlus6m3k4iamp" path="res://World/grassBackround.tscn" id="5_jutah"]
+[ext_resource type="PackedScene" uid="uid://cjefg4fkvyq0j" path="res://World/grass.tscn" id="7_u7i5k"]
+[ext_resource type="PackedScene" uid="uid://c41vhko7wvpfi" path="res://Enemies/bat.tscn" id="9_jbwrx"]
+[ext_resource type="PackedScene" uid="uid://ba6gad6sw04xy" path="res://UI/health_ui.tscn" id="10_451oo"]
+[ext_resource type="PackedScene" uid="uid://dbitx57wk88pk" path="res://World/Tree.tscn" id="11_31r24"]
+
+[sub_resource type="TileSet" id="TileSet_nuqsa"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "bitmap stuff"
+terrain_set_0/terrain_0/color = Color(0.729412, 0, 0.0352941, 1)
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Camera2D" parent="." instance=ExtResource("1_tkesx")]
+position = Vector2(160, 56)
+
+[node name="BottomRight" parent="Camera2D/Limits" index="0"]
+position = Vector2(384, 208)
+
+[node name="TopLeft" parent="Camera2D/Limits" index="1"]
+position = Vector2(-120, -72)
+
+[node name="Player" parent="." instance=ExtResource("2_wrcgn")]
+position = Vector2(160, 56)
+
+[node name="Hurtbox" parent="Player" index="5"]
+collision_layer = 30
+collision_mask = 30
+
+[node name="Player Stats" parent="Player" index="7"]
+max_health = 4
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Dirth Path tile map" parent="." instance=ExtResource("1_74fk4")]
+layer_0/tile_data = PackedInt32Array(393216, 0, 3, 393217, 65536, 3, 393218, 65536, 3, 393219, 65536, 3, 393220, 65536, 3, 393221, 458752, 3, 327685, 589824, 1, 262149, 262144, 0, 262150, 524288, 3, 196614, 589824, 0, 131078, 589824, 0, 65542, 589824, 1, 6, 196608, 0, 262151, 65536, 3, 262152, 65536, 3, 262153, 65536, 3, 262154, 65536, 3, 262155, 65536, 3, 262156, 65536, 3, 262157, 65536, 3, 262158, 65536, 3, 262159, 65536, 3, 262160, 131072, 3, 589822, 0, 3, 589823, 131072, 3, -131062, 0, 0, -65526, 0, 2, -65525, 131072, 2, -131061, 131072, 0)
+
+[node name="Cliff w_ collisions" parent="." instance=ExtResource("2_46fb0")]
+layer_0/tile_data = PackedInt32Array(6, 65536, 3, 7, 65536, 3, 8, 131072, 3, 5, 262144, 3, -65531, 196608, 0, 327686, 0, 3, 327687, 65536, 3, 327688, 131072, 3, 262144, 458752, 4, 327680, 196608, 2, 327679, 0, 3)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, 0)
+texture = ExtResource("1_dv7ls")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 128)
+region_filter_clip_enabled = true
+
+[node name="Backround" parent="." instance=ExtResource("5_jutah")]
+offset_left = -240.0
+offset_top = -216.0
+offset_right = 568.0
+offset_bottom = 327.0
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_nuqsa")
+cell_quadrant_size = 32
+format = 2
+
+[node name="Bush Group" type="Node2D" parent="."]
+
+[node name="Grass" parent="Bush Group" instance=ExtResource("7_u7i5k")]
+position = Vector2(240, 40)
+
+[node name="Grass2" parent="Bush Group" instance=ExtResource("7_u7i5k")]
+position = Vector2(184, 184)
+
+[node name="Grass3" parent="Bush Group" instance=ExtResource("7_u7i5k")]
+position = Vector2(112, 0)
+
+[node name="Grass4" parent="Bush Group" instance=ExtResource("7_u7i5k")]
+position = Vector2(168, 184)
+
+[node name="Grass5" parent="Bush Group" instance=ExtResource("7_u7i5k")]
+position = Vector2(112, 56)
+
+[node name="Grass6" parent="Bush Group" instance=ExtResource("7_u7i5k")]
+position = Vector2(232, 80)
+
+[node name="Bush" parent="Bush Group" instance=ExtResource("2_oc2a2")]
+position = Vector2(56, 40)
+
+[node name="Bush2" parent="Bush Group" instance=ExtResource("2_oc2a2")]
+position = Vector2(32, 40)
+
+[node name="Bush3" parent="Bush Group" instance=ExtResource("2_oc2a2")]
+position = Vector2(128, 120)
+
+[node name="Bush4" parent="Bush Group" instance=ExtResource("2_oc2a2")]
+position = Vector2(56, 152)
+
+[node name="Bush5" parent="Bush Group" instance=ExtResource("2_oc2a2")]
+position = Vector2(192, 96)
+
+[node name="Grass Group" type="Node2D" parent="."]
+
+[node name="Bush6" parent="Grass Group" instance=ExtResource("2_oc2a2")]
+position = Vector2(112, 120)
+
+[node name="Bush7" parent="Grass Group" instance=ExtResource("2_oc2a2")]
+position = Vector2(208, 144)
+
+[node name="Bat group" type="Node2D" parent="."]
+
+[node name="Bat" parent="Bat group" instance=ExtResource("9_jbwrx")]
+position = Vector2(48, 88)
+
+[node name="Bat2" parent="Bat group" instance=ExtResource("9_jbwrx")]
+position = Vector2(200, 56)
+
+[node name="Bat3" parent="Bat group" instance=ExtResource("9_jbwrx")]
+position = Vector2(50, 93)
+
+[node name="Bat4" parent="Bat group" instance=ExtResource("9_jbwrx")]
+position = Vector2(62, 90)
+
+[node name="Bat5" parent="Bat group" instance=ExtResource("9_jbwrx")]
+position = Vector2(57, 84)
+
+[node name="Bat6" parent="Bat group" instance=ExtResource("9_jbwrx")]
+position = Vector2(59, 83)
+
+[node name="Bat7" parent="Bat group" instance=ExtResource("9_jbwrx")]
+position = Vector2(58, 89)
+
+[node name="Tree Group" type="Node2D" parent="."]
+
+[node name="Tree" parent="Tree Group" instance=ExtResource("11_31r24")]
+position = Vector2(256, 124)
+
+[node name="Tree2" parent="Tree Group" instance=ExtResource("11_31r24")]
+position = Vector2(14, 86)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Health UI" parent="CanvasLayer" instance=ExtResource("10_451oo")]
+max_hearts = 4
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(320, -32, 320, 192, -64, 192, -64, -32, -120, -32, -120, 216, 384, 208, 384, -32)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-120, -32, -120, -72, 384, -64, 384, -32, -112, -32)
+
+[editable path="Camera2D"]
+[editable path="Player"]
+[editable path="Player/Hitbox pivot 2 electric boogaloo/Sword Hitbox"]
+[editable path="Player/Hurtbox"]

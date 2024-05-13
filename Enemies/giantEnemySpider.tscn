@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmdxmvvbpysme"]
+
+[ext_resource type="Script" path="res://Enemies/bushEnemy.gd" id="1_e7ckb"]
+[ext_resource type="Texture2D" uid="uid://dfnc34qbe3euc" path="res://Downloads/FAtXfGwXEA09fpC.jpg" id="2_eiwy5"]
+[ext_resource type="PackedScene" uid="uid://dmh16223m5b2f" path="res://Overlap/hurtbox.tscn" id="3_ywbgj"]
+[ext_resource type="PackedScene" uid="uid://g46bwwnqv71n" path="res://Overlap/animal_detection.tscn" id="4_crco2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k01kc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bq06l"]
+radius = 15.1327
+
+[node name="enemySpider" type="CharacterBody2D"]
+script = ExtResource("1_e7ckb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(11, 7)
+scale = Vector2(0.0668317, 0.0923567)
+texture = ExtResource("2_eiwy5")
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_ywbgj")]
+collision_layer = 8
+collision_mask = 8
+
+[node name="BushHurtbox" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(10, 7)
+shape = SubResource("CircleShape2D_k01kc")
+
+[node name="Timer" type="Timer" parent="Hurtbox"]
+
+[node name="bushCollision" type="CollisionShape2D" parent="."]
+position = Vector2(10, 7)
+shape = SubResource("CircleShape2D_bq06l")
+
+[node name="DetectBox" parent="." instance=ExtResource("4_crco2")]
+
+[node name="DetectionPolygon" parent="DetectBox" index="0"]
+position = Vector2(13, 7)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+
+[editable path="DetectBox"]

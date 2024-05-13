@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy630kl26s8ja"]
+
+[ext_resource type="PackedScene" uid="uid://bjnh7fiekkb6d" path="res://HunterScene.tscn" id="1_f1fak"]
+[ext_resource type="PackedScene" uid="uid://bmdxmvvbpysme" path="res://Enemies/giantEnemySpider.tscn" id="2_5cx0e"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="H World" parent="." instance=ExtResource("1_f1fak")]
+
+[node name="enemySpider" parent="." instance=ExtResource("2_5cx0e")]
+position = Vector2(200, 224)
+
+[node name="enemySpider2" parent="." instance=ExtResource("2_5cx0e")]
+position = Vector2(112, 224)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 384.0
+offset_top = 128.0
+offset_right = 448.0
+offset_bottom = 154.0
+text = "Round 2"

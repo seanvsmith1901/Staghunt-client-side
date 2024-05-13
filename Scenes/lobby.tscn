@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw3i25vwtu3ff"]
+
+[ext_resource type="Script" path="res://Lobby.gd" id="1_n80vh"]
+[ext_resource type="Texture2D" uid="uid://m4n155hy8ydy" path="res://Scenes/download.jpg" id="2_hx18i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_54jd5"]
+font_size = 80
+
+[node name="Lobby" type="Node2D"]
+script = ExtResource("1_n80vh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -2.0
+offset_top = -4.0
+offset_right = 1151.0
+offset_bottom = 649.0
+texture = ExtResource("2_hx18i")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 119.0
+offset_top = 119.0
+offset_right = 437.0
+offset_bottom = 256.0
+text = "Waiting"
+label_settings = SubResource("LabelSettings_54jd5")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

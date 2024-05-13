@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://bad7daq5rfej2"]
+
+[ext_resource type="Script" path="res://Overlap/detectionSystem.gd" id="1_3opsx"]
+[ext_resource type="PackedScene" uid="uid://g46bwwnqv71n" path="res://Overlap/animal_detection.tscn" id="1_rwu3m"]
+[ext_resource type="PackedScene" uid="uid://csa3u6tg8vd4" path="res://Overlap/hitbox.tscn" id="2_r7xd6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25f6w"]
+size = Vector2(51.125, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eolxd"]
+size = Vector2(34.5, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2wlk6"]
+size = Vector2(34, 82)
+
+[node name="detectionSystem" type="Node"]
+script = ExtResource("1_3opsx")
+
+[node name="AnimalDetection" parent="." instance=ExtResource("1_rwu3m")]
+position = Vector2(296, 304)
+
+[node name="DetectionPolygon" parent="AnimalDetection" index="0"]
+position = Vector2(-32, -72)
+shape = SubResource("RectangleShape2D_25f6w")
+
+[node name="BatDetection" parent="." instance=ExtResource("2_r7xd6")]
+position = Vector2(296, 304)
+collision_layer = 4
+collision_mask = 4
+
+[node name="BatShape" type="CollisionShape2D" parent="BatDetection"]
+position = Vector2(40, -96)
+shape = SubResource("RectangleShape2D_eolxd")
+disabled = true
+
+[node name="SpiderDetection" parent="." instance=ExtResource("2_r7xd6")]
+position = Vector2(296, 304)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="SpiderDetection" index="0"]
+position = Vector2(40, -48)
+shape = SubResource("RectangleShape2D_2wlk6")
+disabled = true
+
+[editable path="AnimalDetection"]
+[editable path="SpiderDetection"]

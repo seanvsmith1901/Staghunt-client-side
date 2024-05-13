@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccguy07stope"]
+
+[ext_resource type="Texture2D" uid="uid://duvnwd8q1vw78" path="res://Effects/HitEffect.png" id="1_klso3"]
+[ext_resource type="Script" path="res://Effects/effect.gd" id="2_hpcr4"]
+[ext_resource type="AudioStream" uid="uid://bqri6fh4ntexj" path="res://Music and Sounds/Hit.wav" id="3_4kvf0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tnjt"]
+atlas = ExtResource("1_klso3")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd7sb"]
+atlas = ExtResource("1_klso3")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i4kih"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tnjt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd7sb")
+}],
+"loop": false,
+"name": &"Animate",
+"speed": 10.0
+}]
+
+[node name="HitEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_i4kih")
+animation = &"Animate"
+offset = Vector2(0, -8)
+script = ExtResource("2_hpcr4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4kvf0")
+volume_db = -12.901
+autoplay = true
