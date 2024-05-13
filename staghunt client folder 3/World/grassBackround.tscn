@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlus6m3k4iamp"]
+
+[ext_resource type="Texture2D" uid="uid://wp7e0n7jix8t" path="res://World/GrassBackground.png" id="1_o73nv"]
+
+[node name="Backround" type="TextureRect"]
+z_index = -1
+offset_left = 1.0
+offset_right = 384.0
+offset_bottom = 256.0
+texture = ExtResource("1_o73nv")
+stretch_mode = 1

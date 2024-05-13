@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb7qu2gq50gr4"]
+
+[ext_resource type="PackedScene" uid="uid://bjnh7fiekkb6d" path="res://HunterScene.tscn" id="1_cvpil"]
+
+[node name="Node" type="Node"]
+
+[node name="H World" parent="." instance=ExtResource("1_cvpil")]
+
+[editable path="H World"]
