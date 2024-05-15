@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c5vtaeyuvqfxw" path="res://Player/Player.png" id="2_5gpdw"]
 [ext_resource type="PackedScene" uid="uid://lg8thhlwq3w6" path="res://Player/ScoreGUI.tscn" id="2_65w1b"]
 [ext_resource type="AudioStream" uid="uid://dpkihd4tr50f7" path="res://Music and Sounds/Evade.wav" id="4_qn25k"]
-[ext_resource type="Texture2D" uid="uid://b5yqlk1qymnwi" path="res://Shadows/MediumShadow.png" id="6_a5e82"]
+[ext_resource type="Texture2D" uid="uid://cqglh6nsi0yii" path="res://World/Grass.png" id="6_a5e82"]
 [ext_resource type="Script" path="res://Player/playerInput.gd" id="6_finsr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g3tvt"]
